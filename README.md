@@ -149,7 +149,7 @@ Business insights can be generated using SQL queries located in:
 *   Revenue by customer segment
 *   Inventory risk detection
 *   Return rate analysis
-
+```
 enterprise-operations-data-platform
 │
 ├── docs
@@ -188,7 +188,7 @@ enterprise-operations-data-platform
 ├── README.md
 ├── .gitignore
 └── LICENSE
-
+```
 ## Technology Stack
 
 ### Database

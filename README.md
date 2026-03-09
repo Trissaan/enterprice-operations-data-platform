@@ -152,41 +152,42 @@ Business insights can be generated using SQL queries located in:
 
 enterprise-operations-data-platform
 │
-├ docs
-│  ├ architecture.md
-│  ├ business_problem.md
-│  ├ data_model.md
-│  ├ erd.png
-│  └ architecture_diagram.png
+├── docs
+│   ├── architecture.md
+│   ├── business_problem.md
+│   ├── data_model.md
+│   ├── erd.png
+│   └── architecture_diagram.png
 │
-├ pipeline
-│  ├ extract.py
-│  ├ transform.py
-│  ├ load.py
-│  └ run_pipeline.py
+├── pipeline
+│   ├── extract.py
+│   ├── transform.py
+│   ├── load.py
+│   └── run_pipeline.py
 │
-├ sql
-│  ├ ddl
-│  │   ├ 01_customers.sql
-│  │   ├ 02_suppliers.sql
-│  │   ├ 03_products.sql
-│  │   ├ 04_warehouses.sql
-│  │   ├ 05_inventory.sql
-│  │   ├ 06_orders.sql
-│  │   ├ 07_order_items.sql
-│  │   ├ 08_payments.sql
-│  │   ├ 09_shipments.sql
-│  │   └ 10_returns.sql
-│  │
-│  ├ seed_data.sql
-│  ├ insertion_check.sql
-│  │
-│  └ analytics
-│      └ business_analytics.sql
+├── sql
+│   ├── ddl
+│   │   ├── 01_customers.sql
+│   │   ├── 02_suppliers.sql
+│   │   ├── 03_products.sql
+│   │   ├── 04_warehouses.sql
+│   │   ├── 05_inventory.sql
+│   │   ├── 06_orders.sql
+│   │   ├── 07_order_items.sql
+│   │   ├── 08_payments.sql
+│   │   ├── 09_shipments.sql
+│   │   └── 10_returns.sql
+│   │
+│   ├── seed_data.sql
+│   ├── insertion_check.sql
+│   │
+│   └── analytics
+│       └── business_analytics.sql
 │
-├ data_dump.sql
-├ README.md
-└ .gitignore
+├── data_dump.sql
+├── README.md
+├── .gitignore
+└── LICENSE
 
 ## Technology Stack
 

@@ -55,3 +55,15 @@ FROM inventory i
 JOIN warehouses w ON i.warehouse_id = w.warehouse_id
 GROUP BY w.warehouse_name, w.state
 ORDER BY total_stock DESC;
+
+--Customer Lifetime Value
+SELECT
+    c.customer_id,
+    c.first_name,
+    c.last_name,
+    SUM(o.order_total) AS lifetime_value
+FROM customers c
+JOIN orders o ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.first_name, c.last_name
+ORDER BY lifetime_value DESC
+LIMIT 10;

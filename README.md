@@ -38,6 +38,17 @@ The platform follows a layered data architecture:
 ![Architecture Diagram](docs/architecture_diagram.png)
 
 ---
+## Pipeline Orchestration
+
+The ETL workflow is orchestrated using a DAG structure, enabling scheduled execution and clear dependency management between pipeline stages.
+
+*Workflow*:
+
+Extract → Transform → Load
+
+
+
+---
 ## Pipeline Workflow
 
 The ETL pipeline processes operational data through a structured workflow.

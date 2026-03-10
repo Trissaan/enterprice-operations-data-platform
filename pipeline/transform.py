@@ -67,3 +67,6 @@ def run_transformations(data):
         print(f"Transformed {name}: {len(df)} rows")
 
     return transformed_data
+
+def transform_data(data):
+    return run_transformations(data)

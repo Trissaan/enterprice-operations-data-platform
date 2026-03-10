@@ -3,6 +3,7 @@ from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 import os
 from dotenv import load_dotenv
+from pipeline.logging import logger
 
 load_dotenv()
 
@@ -46,6 +47,6 @@ def extract_tables():
     data = {}
     for table_name, query in tables.items():
         data[table_name] = pd.read_sql(query, engine)
-        print(f"Extracted {table_name}: {len(data[table_name])} rows")
+        logger.info(f"Extracted {table_name}: {len(data[table_name])} rows")
 
     return data

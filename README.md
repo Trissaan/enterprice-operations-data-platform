@@ -38,7 +38,13 @@ The platform follows a layered data architecture:
 ![Architecture Diagram](docs/architecture_diagram.png)
 
 ---
+## Pipeline Workflow
 
+The ETL pipeline processes operational data through a structured workflow.
+
+![Pipeline Workflow](docs/pipeline_workflow.png)
+
+---
 ## Data Model
 
 The operational schema includes the following core entities:

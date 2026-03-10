@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from urllib.parse import quote_plus
 import os
 from dotenv import load_dotenv
-from pipeline.logging import logger
+from pipeline.logger import logger
 
 load_dotenv()
 

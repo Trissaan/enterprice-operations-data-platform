@@ -44,11 +44,29 @@ The ETL workflow is orchestrated using a DAG structure, enabling scheduled execu
 
 *Workflow*:
 
-Extract → Transform → Load
-
-
+Extract → Validate → Transform → Load
 
 ---
+
+## Pipeline Stages
+
+1. **Extract**  
+   Data is extracted from PostgreSQL operational tables using SQLAlchemy.
+
+2. **Validate**  
+   Basic data quality checks are applied including empty table detection and NULL value checks.
+
+3. **Transform**  
+   Data transformations are applied to prepare datasets for analytics.
+
+4. **Load**  
+   Processed data is loaded into analytics-ready tables.
+
+5. **Analytics**  
+   Business analytics queries generate operational insights.
+
+---
+
 ## Pipeline Workflow
 
 The ETL pipeline processes operational data through a structured workflow.

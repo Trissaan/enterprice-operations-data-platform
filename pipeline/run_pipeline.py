@@ -1,15 +1,14 @@
-from extract import extract_tables
-from transform import run_transformations
-from load import load_tables
+from pipeline.extract import extract_tables
+from pipeline.transform import transform_data
+from pipeline.load import load_data
 
-def main():
-    print("Starting pipeline...")
 
-    raw_data = extract_tables()
-    transformed_data = run_transformations(raw_data)
-    load_tables(transformed_data)
+def run_pipeline():
 
-    print("Pipeline completed successfully.")
+    data = extract_tables()
 
-if __name__ == "__main__":
-    main()
+    transformed_data = transform_data(data)
+
+    load_data(transformed_data)
+
+    print("Pipeline completed successfully")

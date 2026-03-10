@@ -17,3 +17,6 @@ def run_pipeline():
     load_data(transformed_data)
 
     print("Pipeline completed successfully")
+
+if __name__ == "__main__":
+    run_pipeline()

@@ -32,3 +32,6 @@ def load_tables(transformed_data):
         target_table = f"analytics_{table_name}"
         df.to_sql(target_table, engine, if_exists="replace", index=False)
         print(f"Loaded {target_table}: {len(df)} rows")
+
+def load_data(data):
+    return load_tables(data)

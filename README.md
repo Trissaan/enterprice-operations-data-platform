@@ -23,6 +23,24 @@ The platform follows a layered data architecture:
 
 ---
 
+## Data Architecture
+
+The platform follows a simplified enterprise data architecture:
+
+Operational Layer
+
+Stores transactional business data across multiple relational tables including customers, orders, payments, and inventory.
+
+Transformation Layer
+
+A Python-based ETL pipeline processes raw operational data and generates analytics-ready datasets.
+
+Analytics Layer
+
+The final analytics tables support business reporting such as revenue analysis, product performance tracking, and warehouse inventory monitoring.
+
+---
+
 ## Features
 
 - Enterprise-style relational data model with 10 operational tables
@@ -129,7 +147,34 @@ pipeline/
 ├ load.py
 └ run_pipeline.py
 ```
+## ETL Pipeline Workflow
+1. Extract
 
+The pipeline extracts transactional data from PostgreSQL operational tables including:
+
+- customers
+- orders
+- order_items
+- payments
+- shipments
+- returns
+- inventory
+
+2. Transform
+
+Using Python and Pandas, the pipeline performs:
+
+- data joins across relational tables
+- aggregation of revenue metrics
+- calculation of product performance metrics
+- warehouse inventory analysis
+- shipment and return performance metrics
+
+3. Load
+
+The transformed datasets are loaded into analytics tables designed for reporting and business intelligence.
+
+These tables enable fast analytical queries and support downstream BI tools.
 
 ### Extract
 
@@ -291,6 +336,19 @@ enterprise-operations-data-platform
 ### Visualization
 
 - Power BI / Tableau
+
+---
+
+## Data Engineering Concepts Demonstrated
+
+• Relational schema design
+• Synthetic data generation
+• ETL pipeline development
+• Python data processing with Pandas
+• Data transformation workflows
+• Analytics data modelling
+• SQL-based business analytics
+• End-to-end data platform architecture
 
 ---
 

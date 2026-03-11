@@ -1,5 +1,13 @@
 # Enterprise Operations Data Platform
 
+![Python](https://img.shields.io/badge/Python-3.12-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
+![ETL](https://img.shields.io/badge/Data-Pipeline-green)
+![Architecture](https://img.shields.io/badge/Data-Platform-orange)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+![Architecture Diagram](docs/architecture_diagram.png)
+
 A PostgreSQL-based enterprise data platform that ingests operational business data and transforms it into analytics-ready datasets using a modular Python ETL pipeline and DAG-based workflow orchestration.
 
 ---

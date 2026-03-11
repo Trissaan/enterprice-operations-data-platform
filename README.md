@@ -1,12 +1,31 @@
 # Enterprise Operations Data Platform
 
-## Overview
+A PostgreSQL-based enterprise data platform that ingests operational business data and transforms it into analytics-ready datasets using a modular Python ETL pipeline and DAG-based workflow orchestration.
 
-This project implements a simplified enterprise data platform that simulates how operational business data is transformed into analytics-ready datasets.
+---
 
-The system models transactional data across customers, products, suppliers, warehouses, inventory, orders, payments, shipments, and returns. A Python-based ETL pipeline extracts this operational data from PostgreSQL tables, transforms it into structured analytics datasets, and loads the results into dedicated reporting tables.
+## Architecture
 
-The platform demonstrates key data engineering and analytics engineering concepts including relational data modelling, ETL pipeline development, analytics table design, and SQL-based business analysis.
+![Architecture Diagram](docs/architecture_diagram.png)
+
+The platform follows a layered data architecture:
+
+1. **Operational Source Layer** – PostgreSQL transactional tables  
+2. **Data Processing Layer** – Python ETL pipeline  
+3. **Analytics Layer** – transformed reporting tables  
+4. **Business Intelligence Layer** – SQL queries and dashboards  
+
+---
+
+## Features
+
+- Enterprise-style relational data model with 10 operational tables
+- Modular Python ETL pipeline (Extract → Validate → Transform → Load)
+- DAG-based workflow orchestration
+- Data quality validation checks
+- Analytics-ready reporting tables
+- SQL-based business insights
+- End-to-end operational data platform architecture
 
 ---
 
@@ -22,48 +41,20 @@ Without a centralized analytics layer, it becomes difficult to answer critical b
 - Which warehouses are at risk of stock shortages?
 - How do returns and shipments affect operational performance?
 
-This project builds a small-scale enterprise data platform that transforms raw operational data into analytics-ready datasets that support business insights and reporting.
+This project builds a simplified enterprise data platform that transforms raw operational data into analytics-ready datasets supporting business insights and reporting.
 
 ---
 
-## System Architecture
-
-The platform follows a layered data architecture:
-
-1. **Operational Source Layer** – PostgreSQL transactional tables  
-2. **Data Processing Layer** – Python ETL pipeline  
-3. **Analytics Layer** – transformed reporting tables  
-4. **Business Intelligence Layer** – SQL queries and dashboards  
-
-![Architecture Diagram](docs/architecture_diagram.png)
-
----
 ## Pipeline Orchestration
 
-The ETL workflow is orchestrated using a DAG structure, enabling scheduled execution and clear dependency management between pipeline stages.
+The ETL workflow is modeled as a **Directed Acyclic Graph (DAG)** that defines dependencies between pipeline stages.
 
 *Workflow*:
 
 Extract → Validate → Transform → Load
 
----
 
-## Pipeline Stages
-
-1. **Extract**  
-   Data is extracted from PostgreSQL operational tables using SQLAlchemy.
-
-2. **Validate**  
-   Basic data quality checks are applied including empty table detection and NULL value checks.
-
-3. **Transform**  
-   Data transformations are applied to prepare datasets for analytics.
-
-4. **Load**  
-   Processed data is loaded into analytics-ready tables.
-
-5. **Analytics**  
-   Business analytics queries generate operational insights.
+Each stage executes only after the previous stage completes successfully, mirroring production-grade data pipelines commonly implemented using orchestration frameworks such as Apache Airflow.
 
 ---
 
@@ -73,7 +64,27 @@ The ETL pipeline processes operational data through a structured workflow.
 
 ![Pipeline Workflow](docs/pipeline_workflow.png)
 
+Pipeline stages:
+
+1. **Extract**  
+   Data is extracted from PostgreSQL operational tables using SQLAlchemy.
+
+2. **Validate**  
+   Data quality checks are performed including:
+   - empty table detection
+   - NULL value checks
+
+3. **Transform**  
+   Raw transactional data is transformed into analytics datasets.
+
+4. **Load**  
+   Transformed datasets are written into analytics-ready tables.
+
+5. **Analytics**  
+   SQL queries generate operational insights.
+
 ---
+
 ## Data Model
 
 The operational schema includes the following core entities:
@@ -89,10 +100,14 @@ The operational schema includes the following core entities:
 - shipments  
 - returns  
 
-These tables capture transactional business activity and are used as inputs for the ETL pipeline.
+These tables capture transactional business activity and serve as inputs for the ETL pipeline.
 
-Entity relationships and schema design are documented in: docs/data_model.md
+Entity relationships and schema design are documented in:  `docs/data_model.md`
 
+
+The complete entity relationship diagram is shown below:
+
+![ERD](docs/erd.png)
 
 ---
 
@@ -100,21 +115,27 @@ Entity relationships and schema design are documented in: docs/data_model.md
 
 The ETL pipeline is implemented in Python and consists of modular components.
 
+```
 pipeline/
 │
 ├ extract.py
 ├ transform.py
 ├ load.py
 └ run_pipeline.py
+```
 
 
 ### Extract
 
-The extract module reads source tables from PostgreSQL.
+Reads source tables from PostgreSQL using SQLAlchemy.
+
+### Validate
+
+Performs data quality checks to detect empty tables or missing values.
 
 ### Transform
 
-The transform module processes raw transactional data and generates analytics datasets including:
+Processes raw transactional data and generates analytics datasets including:
 
 - sales fact tables
 - monthly revenue aggregates
@@ -122,11 +143,13 @@ The transform module processes raw transactional data and generates analytics da
 
 ### Load
 
-The load module writes transformed datasets back into PostgreSQL analytics tables.
+Writes transformed datasets back into PostgreSQL analytics tables.
 
-### Pipeline Execution
+---
 
-The full pipeline is executed using:
+## Pipeline Execution
+
+Run the full ETL pipeline:
 
 ``python pipeline/run_pipeline.py``
 
@@ -149,11 +172,14 @@ Loaded analytics_monthly_revenue: 7 rows
 Loaded analytics_inventory_risk: 42 rows
 Pipeline completed successfully.
 
+
+---
+
 ## Analytics Layer
 
 The ETL pipeline produces analytics-ready tables designed for reporting.
 
-**analytics_fact_sales**
+### analytics_fact_sales
 
 Sales fact table with one row per order item.
 
@@ -161,15 +187,17 @@ Supports:
 
 - product sales analysis
 - revenue calculations
-- customer purchasing behaviour
+- customer purchasing behavior
 
-**analytics_monthly_revenue**
+### analytics_monthly_revenue
 
 Aggregated monthly revenue dataset used for trend analysis and business reporting.
 
-**analytics_inventory_risk**
+### analytics_inventory_risk
 
 Identifies products with potential stock shortages across warehouses.
+
+---
 
 ## Business Analytics
 
@@ -177,13 +205,19 @@ Business insights can be generated using SQL queries located in:
 
 `sql/analytics/business_analytics.sql`
 
-### Example analysis includes:
 
-*   Monthly revenue trends
-*   Top selling products
-*   Revenue by customer segment
-*   Inventory risk detection
-*   Return rate analysis
+Example analyses include:
+
+- Monthly revenue trends
+- Top selling products
+- Revenue by customer segment
+- Inventory risk detection
+- Return rate analysis
+
+---
+
+## Project Structure
+
 ```
 enterprise-operations-data-platform
 │
@@ -224,24 +258,32 @@ enterprise-operations-data-platform
 ├── .gitignore
 └── LICENSE
 ```
+
+---
+
 ## Technology Stack
 
 ### Database
+
 - PostgreSQL
 
 ### Programming
+
 - Python
 - Pandas
 
 ### Data Processing
+
 - SQL
 - ETL pipelines
 
 ### Tools
+
 - DBeaver
 - Git / GitHub
 
-### Visualization 
+### Visualization
+
 - Power BI / Tableau
 
 ---
@@ -251,6 +293,7 @@ enterprise-operations-data-platform
 ### 1. Create database tables
 
 Execute SQL scripts inside: ``sql/ddl/``
+
 ---
 
 ### 2. Load synthetic data
@@ -266,7 +309,8 @@ Execute:``sql/insertion_check.sql``
 ---
 
 ### 4. Run the ETL pipeline
-``python pipeline/run_pipeline.py``
+
+``python -m pipeline.run_pipeline``
 
 ---
 
@@ -286,4 +330,13 @@ This project demonstrates:
 - Python-based ETL pipeline development
 - analytics-ready data modelling
 - SQL-based business analytics
+- DAG-based pipeline orchestration
 - end-to-end data platform architecture
+
+---
+
+## Author
+
+**Trissaan A. Shanmugasundaram**  
+Data Analyst / Data Engineer  
+Melbourne, Australia
